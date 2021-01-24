@@ -1,7 +1,14 @@
 const Atendimento = require ('../models/atendimentos')
 
 module.exports = app => {
-    app.get('/atendimento', (req, res) => res.send('Voçe está na rota de atendimento que está realizando um GET'))
+    app.get('/atendimento', (req, res) => {
+        Atendimento.lista(res)
+    })
+    app.get('/atendimento/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+
+        Atendimento.buscaPorId(id, res)
+    })
 
     app.post('/atendimento', (req, res) => {
      
